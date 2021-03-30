@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 var curSetting: SettingCfg? = Load("AppSetting.json")
 
@@ -43,10 +44,31 @@ func Load<T: Decodable>(_ fileName: String) -> T? {
 
 func Save(data: SettingCfg) {
     let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
     do {
         var str = try encoder.encode(data)
-        print("encoder result:\(str.base64EncodedString())")
+        
+        print("encoder result1:\(str.base64EncodedString())")
+        print("encoder result2:\(String(data: str, encoding: .utf8))")
+        
+        print(String(data: str, encoding: .utf8)!)
+        print("abcd\ncba")
+        
+        
+        let testString = "This is a test string\nabc"
+        print(testString)
+        let somedata = testString.data(using: String.Encoding.utf8)
+        let backToString = String(data: somedata!, encoding: String.Encoding.utf8)
+        print(backToString!)
+        
+        
     } catch {
         print("Error")
+    }
+}
+
+struct JsonLoader_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

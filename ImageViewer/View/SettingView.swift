@@ -12,6 +12,7 @@ struct SettingView: View {
     var setting = SettingCfg()
     var body: some View {
         Button("Return") {
+            var useName = FileManager.NSUserName()
             self.isShowSetting = false
             print("setting: \(setting)")
             Save(data: setting)
